@@ -8,51 +8,56 @@
 
 @layer base {
   :root {
-    /* 🎨 BASE - Daniela Naomi Style (Neutral & Elegant) */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    /* 🥂 CHAMPAGNE LUXE - Soft & Elegant Palette */
+    --background: 35 20% 98%;
+    --foreground: 35 20% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 35 18% 99%;
+    --card-foreground: 35 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 35 18% 99%;
+    --popover-foreground: 35 20% 15%;
 
-    /* 🖤 NEUTRAL ACCENTS */
-    --primary: 0 0% 20%;
-    --primary-foreground: 0 0% 100%;
+    /* 🍾 CHAMPAGNE ACCENTS */
+    --primary: 35 15% 35%;
+    --primary-foreground: 35 20% 98%;
 
-    --secondary: 0 0% 97%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 35 18% 96%;
+    --secondary-foreground: 35 20% 15%;
 
-    --muted: 0 0% 97%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 35 18% 96%;
+    --muted-foreground: 35 12% 45%;
 
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 35 15% 35%;
+    --accent-foreground: 35 20% 98%;
 
     --destructive: 0 75% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 0 0% 20%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 35 15% 35%;
 
-    /* ✨ GRADIENTS - Subtle & Clean */
+    /* ✨ GRADIENTS - Champagne Luxe */
     --hero-gradient:
       linear-gradient(
         90deg,
-        hsl(0 0% 100%) 0%,
-        hsl(0 0% 99%) 50%,
-        hsl(0 0% 100%) 100%
+        hsl(35 20% 98%) 0%,
+        hsl(35 18% 96%) 50%,
+        hsl(35 20% 98%) 100%
       );
 
-    /* 🕊️ SHADOWS (VERY SUBTLE) */
-    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.04);
-    --shadow-medium: 0 4px 16px hsl(0 0% 0% / 0.06);
-    --shadow-strong: 0 8px 24px hsl(0 0% 0% / 0.08);
+    /* 🕊️ SHADOWS (WARM & SUBTLE) */
+    --shadow-soft: 0 2px 8px hsl(35 15% 20% / 0.06);
+    --shadow-medium: 0 4px 16px hsl(35 15% 20% / 0.08);
+    --shadow-strong: 0 8px 24px hsl(35 15% 20% / 0.12);
 
     --radius: 0.5rem;
+
+    /* 🥂 CHAMPAGNE COLORS - Direct access */
+    --champagne-light: 35 20% 95%;
+    --champagne-medium: 35 15% 70%;
+    --champagne-dark: 35 18% 40%;
   }
 
   body {
@@ -61,6 +66,23 @@
 
   * {
     @apply border-border;
+  }
+
+  /* Text with lowercase but first letter uppercase */
+  .text-lowercase-first {
+    text-transform: lowercase;
+  }
+
+  .text-lowercase-first::first-letter {
+    text-transform: uppercase;
+    font-size: 1em;
+  }
+
+  /* Ensure it works for all block elements */
+  p.text-lowercase-first::first-letter,
+  div.text-lowercase-first::first-letter,
+  span.text-lowercase-first::first-letter {
+    text-transform: uppercase;
   }
 }
 

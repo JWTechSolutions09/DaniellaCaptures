@@ -28,14 +28,14 @@ const NotFound = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <h1 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-              Page Not Found
+            <h1 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+              PAGE NOT FOUND
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto font-light">
-              The page you're looking for doesn't exist or has been moved.
+            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto font-light text-lowercase-first">
+              the page you're looking for doesn't exist or has been moved.
             </p>
           </AnimatedSection>
 

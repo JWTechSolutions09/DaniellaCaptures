@@ -136,17 +136,17 @@ const Services = () => {
           </AnimatedSection>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal uppercase"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            What I Offer
+            WHAT I OFFER
           </motion.h1>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
-              Emotion-driven photography services tailored to your unique story
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide text-lowercase-first">
+              emotion-driven photography services tailored to your unique story
               and vision.
             </p>
           </AnimatedSection>
@@ -164,7 +164,7 @@ const Services = () => {
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="relative overflow-hidden mb-6 h-[400px] bg-muted/30">
+                  <div className="relative overflow-hidden mb-6 h-[400px]" style={{ backgroundColor: 'hsl(35 18% 96%)' }}>
                     <motion.img
                       src={service.image}
                       alt={service.title}
@@ -183,8 +183,8 @@ const Services = () => {
                   </div>
 
                   <div className="mb-4">
-                    <h3 className="text-3xl font-serif mb-4 font-normal">
-                      {service.title}
+                    <h3 className="text-3xl font-serif mb-4 font-normal uppercase">
+                      {service.title.toUpperCase()}
                     </h3>
                     <p className="text-foreground leading-relaxed font-light mb-6">
                       {service.description}
@@ -228,12 +228,12 @@ const Services = () => {
       </section>
 
       {/* PROCESS */}
-      <section className="py-32 bg-muted/50">
+      <section className="py-32" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-                The Process
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                THE PROCESS
               </h2>
               <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
                 Simple steps to create something meaningful together
@@ -245,7 +245,11 @@ const Services = () => {
             {processSteps.map((step, idx) => (
               <AnimatedSection key={idx} delay={0.1 * idx}>
                 <motion.div
-                  className="text-center p-8 bg-background border border-border h-full"
+                  className="text-center p-8 border h-full"
+                  style={{ 
+                    backgroundColor: 'hsl(35 20% 99%)',
+                    borderColor: 'hsl(35 15% 85%)'
+                  }}
                   whileHover={{
                     y: -10,
                     boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
@@ -261,8 +265,8 @@ const Services = () => {
                   >
                     {step.step}
                   </motion.div>
-                  <h3 className="text-xl font-serif mb-4 font-normal">
-                    {step.title}
+                  <h3 className="text-xl font-serif mb-4 font-normal uppercase">
+                    {step.title.toUpperCase()}
                   </h3>
                   <p className="text-foreground leading-relaxed font-light text-sm">
                     {step.description}
@@ -291,8 +295,8 @@ const Services = () => {
 
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <AnimatedSection delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
-              Ready to Get Started?
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight uppercase">
+              READY TO GET STARTED?
             </h2>
           </AnimatedSection>
 

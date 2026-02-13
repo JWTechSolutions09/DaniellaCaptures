@@ -120,17 +120,17 @@ const Projects = () => {
           </AnimatedSection>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal uppercase"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Recent Work
+            RECENT WORK
           </motion.h1>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
-              A collection of moments captured with intention, emotion, and
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide text-lowercase-first">
+              a collection of moments captured with intention, emotion, and
               timeless elegance.
             </p>
           </AnimatedSection>
@@ -138,7 +138,7 @@ const Projects = () => {
       </section>
 
       {/* FILTER */}
-      <section className="py-12 bg-muted/30 sticky top-20 z-40 backdrop-blur-sm">
+      <section className="py-12 sticky top-20 z-40 backdrop-blur-sm" style={{ backgroundColor: 'hsl(35 18% 97% / 0.95)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-center gap-4 flex-wrap">
             {categories.map((category, idx) => (
@@ -179,7 +179,7 @@ const Projects = () => {
       </section>
 
       {/* FEATURED PROJECTS */}
-      <section className="py-32 bg-muted/50 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         {/* Floating cameras */}
         <FloatingCamera delay={0.3} position={{ x: 12, y: 20 }} size={45} rotation={-18} />
         <FloatingCamera delay={1} position={{ x: 85, y: 25 }} size={38} rotation={22} />
@@ -203,8 +203,8 @@ const Projects = () => {
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-                Featured Projects
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                FEATURED PROJECTS
               </h2>
               <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
                 Selected works that showcase the depth and range of our
@@ -254,8 +254,8 @@ const Projects = () => {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-2xl font-serif mb-3 font-normal">
-                    {project.title}
+                  <h3 className="text-2xl font-serif mb-3 font-normal uppercase">
+                    {project.title.toUpperCase()}
                   </h3>
                   <p className="text-foreground leading-relaxed font-light">
                     {project.description}
@@ -284,8 +284,8 @@ const Projects = () => {
 
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <AnimatedSection delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
-              Ready to Create Together?
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight uppercase">
+              READY TO CREATE TOGETHER?
             </h2>
           </AnimatedSection>
 

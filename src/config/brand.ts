@@ -12,15 +12,20 @@ export const brand = {
   location: "Florida, USA",
 
   /* =========================
-     THEME (EDITORIAL / LUXURY - Daniela Naomi Style)
+     THEME (CHAMPAGNE LUXE - Soft & Elegant)
      ========================= */
  theme: {
-  bg: "hsl(0 0% 100%)", // Pure white background
-  accent: "hsl(0 0% 20%)", // Dark charcoal for accents
-  text: "hsl(0 0% 10%)", // Almost black text
-  muted: "hsl(0 0% 45%)", // Medium gray for muted text
-  border: "hsl(0 0% 85%)", // Light gray borders
-  subtle: "hsl(0 0% 97%)", // Very light gray for subtle backgrounds
+  bg: "hsl(35 20% 98%)", // Very light champagne/cream
+  accent: "hsl(35 15% 35%)", // Medium taupe/brown for accents
+  text: "hsl(35 20% 15%)", // Dark warm brown text
+  muted: "hsl(35 12% 45%)", // Medium warm gray for muted text
+  border: "hsl(35 15% 85%)", // Light champagne borders
+  subtle: "hsl(35 18% 96%)", // Very light champagne for subtle backgrounds
+  champagne: {
+    light: "hsl(35 20% 95%)", // Light champagne
+    medium: "hsl(35 15% 70%)", // Medium beige
+    dark: "hsl(35 18% 40%)", // Dark taupe
+  },
 },
 
 

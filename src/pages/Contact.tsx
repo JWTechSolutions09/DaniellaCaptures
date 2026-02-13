@@ -92,18 +92,18 @@ const Contact = () => {
           </AnimatedSection>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal uppercase"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Let's Tell Your Story
+            LET'S TELL YOUR STORY
           </motion.h1>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
-              I'd love to learn more about you and what you're dreaming up.
-              Please fill out the form below and I'll be in touch shortly.
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide text-lowercase-first">
+              i'd love to learn more about you and what you're dreaming up.
+              please fill out the form below and i'll be in touch shortly.
             </p>
           </AnimatedSection>
         </div>
@@ -121,9 +121,12 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-background border border-border p-8">
-                <h2 className="text-3xl font-serif mb-6 font-normal">
-                  Inquiry Form
+              <div className="border p-8" style={{ 
+                backgroundColor: 'hsl(35 20% 99%)',
+                borderColor: 'hsl(35 15% 85%)'
+              }}>
+                <h2 className="text-3xl font-serif mb-6 font-normal uppercase">
+                  INQUIRY FORM
                 </h2>
                 <p className="text-muted-foreground mb-8 font-light">
                   Please share as much detail as you'd like.
@@ -268,7 +271,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
             >
               <div>
-                <h3 className="text-xl font-serif mb-6 font-normal">Get in Touch</h3>
+                <h3 className="text-xl font-serif mb-6 font-normal uppercase">GET IN TOUCH</h3>
                 <div className="space-y-6">
                   <motion.a
                     href={`mailto:${brand.email}`}

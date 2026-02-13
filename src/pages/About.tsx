@@ -104,17 +104,17 @@ const About = () => {
           </AnimatedSection>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal uppercase"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            I See Stories <br /> In The In-Between
+            I SEE STORIES <br /> IN THE IN-BETWEEN
           </motion.h1>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-light tracking-wide">
-              Photographer · Storyteller · Creative Observer
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-light tracking-wide text-lowercase-first">
+              photographer · storyteller · creative observer
             </p>
           </AnimatedSection>
         </div>
@@ -128,37 +128,35 @@ const About = () => {
             <AnimatedSection direction="right" delay={0.1}>
               <div>
                 <p className="uppercase tracking-[0.2em] text-xs mb-6 text-muted-foreground font-light">
-                  Hello, I'm
+                  Hi There
                 </p>
 
-                <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
-                  Daniella
+                <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                  I'M DANIELLA
                 </h2>
 
+                <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 font-light">
+                  YOUR PHOTOGRAPHER AND FELLOW CREATIVE
+                </p>
+
                 <motion.p
-                  className="text-base md:text-lg text-foreground leading-relaxed mb-6 font-light"
+                  className="text-base md:text-lg text-foreground leading-relaxed mb-6 font-light text-lowercase-first"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Allow me to formally introduce myself. My name is Daniella
-                  Calderon, founder of Daniella Captures Photography. I view
-                  photography as telling a story. YOUR story. It's not just
-                  about posing and smiling at a camera but
+                  I believe photography is the art of telling your story. it's not just about posing and smiling at a camera—it's about capturing real life, candid moments, including the little moments in between.
                 </motion.p>
 
                 <motion.p
-                  className="text-base md:text-lg text-foreground leading-relaxed font-light"
+                  className="text-base md:text-lg text-foreground leading-relaxed font-light text-lowercase-first"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  capturing real life candid moments and creating art out of
-                  it. Every moment snapped and stored into an album is a story
-                  you can look back on and hold onto forever. Here to capture
-                  your most precious moments.
+                  Each photograph tells a story, carefully preserved, allowing you to return to these memories long after the moment has passed. here to capture your most precious moments.
                 </motion.p>
               </div>
             </AnimatedSection>
@@ -177,8 +175,45 @@ const About = () => {
         </ParallaxSection>
       </section>
 
+      {/* MISSION & VISION */}
+      <section className="py-32 relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* MISSION */}
+            <AnimatedSection delay={0.1}>
+              <div>
+                <p className="uppercase tracking-[0.2em] text-xs mb-6 text-muted-foreground font-light">
+                  Mission
+                </p>
+                <h2 className="text-3xl md:text-4xl font-serif mb-6 font-normal leading-tight uppercase">
+                  MY MISSION
+                </h2>
+                <p className="text-lg text-foreground leading-relaxed font-light text-lowercase-first">
+                  my mission is to document real moments with intention and heart, transforming them into timeless stories you can cherish for a lifetime.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            {/* VISION */}
+            <AnimatedSection delay={0.2}>
+              <div>
+                <p className="uppercase tracking-[0.2em] text-xs mb-6 text-muted-foreground font-light">
+                  Vision
+                </p>
+                <h2 className="text-3xl md:text-4xl font-serif mb-6 font-normal leading-tight uppercase">
+                  MY VISION
+                </h2>
+                <p className="text-lg text-foreground leading-relaxed font-light text-lowercase-first">
+                  creating photographs that feel like memories you can step back into.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* APPROACH with animated steps */}
-      <section className="py-32 bg-muted/50 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 96%)' }}>
         {/* Floating cameras */}
         <FloatingCamera delay={0.3} position={{ x: 10, y: 15 }} size={40} rotation={-15} />
         <FloatingCamera delay={1.2} position={{ x: 90, y: 20 }} size={35} rotation={25} />
@@ -203,11 +238,11 @@ const About = () => {
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-                My Approach
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                MY APPROACH
               </h2>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-2xl mx-auto font-light">
-                Every project begins with listening.
+              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-2xl mx-auto font-light text-lowercase-first">
+                every project begins with listening.
               </p>
             </div>
           </AnimatedSection>
@@ -216,10 +251,15 @@ const About = () => {
             {approachSteps.map((step, idx) => (
               <AnimatedSection key={idx} delay={0.1 * idx}>
                 <motion.div
-                  className="p-8 bg-background border border-border h-full"
+                  className="p-8 border h-full"
+                  style={{
+                    backgroundColor: 'hsl(35 20% 99%)',
+                    borderColor: 'hsl(35 15% 85%)'
+                  }}
                   whileHover={{
                     y: -10,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                    boxShadow: "0 20px 40px hsl(35 15% 20% / 0.1)",
+                    backgroundColor: 'hsl(35 20% 100%)'
                   }}
                   transition={{ duration: 0.3 }}
                 >
@@ -232,11 +272,11 @@ const About = () => {
                   >
                     {step.number}
                   </motion.div>
-                  <h3 className="text-2xl font-serif mb-4 font-normal">
-                    {step.title}
+                  <h3 className="text-2xl font-serif mb-4 font-normal uppercase">
+                    {step.title.toUpperCase()}
                   </h3>
-                  <p className="text-foreground leading-relaxed font-light">
-                    {step.description}
+                  <p className="text-foreground leading-relaxed font-light text-lowercase-first">
+                    {step.description.toLowerCase()}
                   </p>
                 </motion.div>
               </AnimatedSection>
@@ -270,11 +310,11 @@ const About = () => {
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-                More Than One Story To Tell
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                MORE THAN ONE STORY TO TELL
               </h2>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-3xl mx-auto font-light">
-                Love stories, editorial projects, and personal brands all
+              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-3xl mx-auto font-light text-lowercase-first">
+                love stories, editorial projects, and personal brands all
                 deserve the same level of care and intention.
               </p>
             </div>
@@ -301,11 +341,11 @@ const About = () => {
                       initial={false}
                     />
                   </div>
-                  <h3 className="text-2xl font-serif mb-3 font-normal">
-                    {service.title}
+                  <h3 className="text-2xl font-serif mb-3 font-normal uppercase">
+                    {service.title.toUpperCase()}
                   </h3>
-                  <p className="text-foreground leading-relaxed font-light text-sm">
-                    {service.description}
+                  <p className="text-foreground leading-relaxed font-light text-sm text-lowercase-first">
+                    {service.description.toLowerCase()}
                   </p>
                 </motion.div>
               </AnimatedSection>
@@ -315,7 +355,7 @@ const About = () => {
       </section>
 
       {/* STATS SECTION with animated numbers */}
-      <section className="py-32 bg-muted/50">
+      <section className="py-32" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             {[
@@ -350,7 +390,7 @@ const About = () => {
       </section>
 
       {/* CTA with animated elements */}
-      <section className="py-40 bg-muted/50 text-center relative overflow-hidden">
+      <section className="py-40 text-center relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 96%)' }}>
         {/* Floating decorative elements */}
         <motion.div
           className="absolute top-20 left-20 w-20 h-20 border border-border opacity-10"
@@ -379,15 +419,15 @@ const About = () => {
 
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <AnimatedSection delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
-              Let's Create Something Meaningful
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight uppercase">
+              LET'S CREATE SOMETHING MEANINGFUL
             </h2>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <p className="text-lg md:text-xl text-foreground mb-12 max-w-xl mx-auto font-light">
-              If you're drawn to intentional imagery and a calm, collaborative
-              experience, I'd love to hear your story.
+            <p className="text-lg md:text-xl text-foreground mb-12 max-w-xl mx-auto font-light text-lowercase-first">
+              if you're drawn to intentional imagery and a calm, collaborative
+              experience, i'd love to hear your story.
             </p>
           </AnimatedSection>
 

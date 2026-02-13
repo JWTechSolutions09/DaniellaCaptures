@@ -18,11 +18,15 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <motion.nav
-      className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <nav 
+      className="z-50 bg-background/95 backdrop-blur-sm border-b border-border"
+      style={{ 
+        position: 'relative',
+        top: 'auto',
+        left: 'auto',
+        right: 'auto',
+        bottom: 'auto'
+      }}
     >
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between h-20">
@@ -33,7 +37,7 @@ const Navbar = () => {
           >
             <Link
               to="/"
-              className="font-serif text-lg tracking-wide text-foreground font-normal"
+              className="font-serif text-lg tracking-wide text-foreground font-normal uppercase"
             >
               {brand.name}
             </Link>
@@ -182,7 +186,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

@@ -114,12 +114,12 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <AnimatedSection delay={0.1}>
             <p className="uppercase tracking-[0.2em] text-xs text-muted-foreground mb-8 font-light">
-              Florida Based Photographer
+              FLORIDA BASED PHOTOGRAPHER
             </p>
           </AnimatedSection>
 
           <motion.h1
-            className="font-serif text-5xl md:text-7xl leading-[1.1] mb-12 text-foreground font-normal"
+            className="font-serif text-5xl md:text-7xl leading-[1.1] mb-12 text-foreground font-normal uppercase"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -129,21 +129,21 @@ const Index = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Capturing Stories
+              CAPTURING STORIES
             </motion.span>
-            <br className="hidden md:block" />
+            <br />
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              That Feel Timeless
+              THAT FEEL TIMELESS
             </motion.span>
           </motion.h1>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto mb-14 font-light tracking-wide">
-              Emotion-driven photography for love stories, editorial work,
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto mb-14 font-light tracking-wide text-lowercase-first text-center">
+              emotion-driven photography for love stories, editorial work,
               and personal brands.
             </p>
           </AnimatedSection>
@@ -178,16 +178,16 @@ const Index = () => {
             <AnimatedSection direction="right" delay={0.1}>
               <div>
                 <p className="uppercase tracking-[0.2em] text-xs mb-6 text-muted-foreground font-light">
-                  Welcome
+                  Hi There
                 </p>
-                <h2 className="text-4xl md:text-5xl font-serif mb-10 font-normal leading-tight">
-                  I'm Daniella
+                <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                  I'M DANIELLA
                 </h2>
-                <p className="text-lg md:text-xl text-foreground leading-relaxed font-light">
-                  I document stories with intention, emotion, and a timeless
-                  editorial approach. My work is rooted in connection —
-                  capturing moments that feel honest, effortless, and deeply
-                  personal.
+                <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 font-light">
+                  YOUR PHOTOGRAPHER AND FELLOW CREATIVE
+                </p>
+                <p className="text-lg md:text-xl text-foreground leading-relaxed font-light text-lowercase-first">
+                  I believe photography is the art of telling your story. it's not just about posing and smiling at a camera—it's about capturing real life, candid moments, including the little moments in between. each photograph tells a story, carefully preserved, allowing you to return to these memories long after the moment has passed. here to capture your most precious moments.
                 </p>
               </div>
             </AnimatedSection>
@@ -206,7 +206,7 @@ const Index = () => {
       </section>
 
       {/* FEATURED WORK - Gallery with floating images */}
-      <section className="py-32 bg-muted/50 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         {/* Floating cameras */}
         <FloatingCamera delay={0.2} position={{ x: 8, y: 20 }} size={40} rotation={-20} />
         <FloatingCamera delay={1} position={{ x: 92, y: 25 }} size={35} rotation={15} />
@@ -230,11 +230,11 @@ const Index = () => {
 
         <AnimatedSection delay={0.2}>
           <div className="max-w-6xl mx-auto px-6 text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-              Featured Stories
+            <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+              FEATURED STORIES
             </h2>
-            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
-              A glimpse into the moments I've been honored to capture
+            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto text-lowercase-first">
+              a glimpse into the moments i've been honored to capture
             </p>
           </div>
         </AnimatedSection>
@@ -269,15 +269,15 @@ const Index = () => {
       </section>
 
       {/* FULL GALLERY SECTION */}
-      <section className="py-32">
+      <section className="py-32" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         <AnimatedSection delay={0.2}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
-                Recent Work
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight uppercase">
+                RECENT WORK
               </h2>
-              <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
-                Explore the complete collection of captured moments
+              <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto text-lowercase-first">
+                explore the complete collection of captured moments
               </p>
             </div>
             <ImageGallery images={galleryImages} columns={3} />
@@ -286,12 +286,12 @@ const Index = () => {
       </section>
 
       {/* EXPERIENCE with animated cards */}
-      <section className="py-32 bg-muted/30">
+      <section className="py-32" style={{ backgroundColor: 'hsl(35 18% 96%)' }}>
         <div className="max-w-6xl mx-auto px-6">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif mb-12 font-normal leading-tight">
-                The Experience
+              <h2 className="text-4xl md:text-5xl font-serif mb-12 font-normal leading-tight uppercase">
+                THE EXPERIENCE
               </h2>
             </div>
           </AnimatedSection>
@@ -299,15 +299,23 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <AnimatedSection delay={0.15}>
               <motion.div
-                className="p-8 bg-background border border-border"
-                whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                className="p-8 border"
+                style={{ 
+                  backgroundColor: 'hsl(35 20% 99%)',
+                  borderColor: 'hsl(35 15% 85%)'
+                }}
+                whileHover={{ 
+                  y: -10, 
+                  boxShadow: "0 20px 40px hsl(35 15% 20% / 0.1)",
+                  backgroundColor: 'hsl(35 20% 100%)'
+                }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-serif mb-4 font-normal">
-                  Every project begins with listening
+                <h3 className="text-2xl font-serif mb-4 font-normal uppercase">
+                  EVERY PROJECT BEGINS WITH LISTENING
                 </h3>
-                <p className="text-foreground leading-relaxed font-light">
-                  I take time to understand your vision, your story, and what
+                <p className="text-foreground leading-relaxed font-light text-lowercase-first">
+                  i take time to understand your vision, your story, and what
                   matters most to you.
                 </p>
               </motion.div>
@@ -315,15 +323,23 @@ const Index = () => {
 
             <AnimatedSection delay={0.25}>
               <motion.div
-                className="p-8 bg-background border border-border"
-                whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                className="p-8 border"
+                style={{ 
+                  backgroundColor: 'hsl(35 20% 99%)',
+                  borderColor: 'hsl(35 15% 85%)'
+                }}
+                whileHover={{ 
+                  y: -10, 
+                  boxShadow: "0 20px 40px hsl(35 15% 20% / 0.1)",
+                  backgroundColor: 'hsl(35 20% 100%)'
+                }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-serif mb-4 font-normal">
-                  A calm, guided experience
+                <h3 className="text-2xl font-serif mb-4 font-normal uppercase">
+                  A CALM, GUIDED EXPERIENCE
                 </h3>
-                <p className="text-foreground leading-relaxed font-light">
-                  The result is a calm, guided experience that allows real
+                <p className="text-foreground leading-relaxed font-light text-lowercase-first">
+                  the result is a calm, guided experience that allows real
                   moments to unfold naturally.
                 </p>
               </motion.div>
@@ -333,7 +349,7 @@ const Index = () => {
       </section>
 
       {/* TESTIMONIAL with animated quote */}
-      <section className="py-32 bg-muted/50 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden" style={{ backgroundColor: 'hsl(35 18% 97%)' }}>
         {/* Floating cameras */}
         <FloatingCamera delay={0} position={{ x: 15, y: 30 }} size={50} rotation={-25} />
         <FloatingCamera delay={0.8} position={{ x: 80, y: 60 }} size={40} rotation={30} />
@@ -425,14 +441,14 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-10 text-foreground font-normal">
-              Ready to tell your story?
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-10 text-foreground font-normal uppercase">
+              READY TO TELL YOUR STORY?
             </h2>
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-lg md:text-xl text-foreground max-w-xl mx-auto mb-14 font-light">
-              I'd love to hear about your vision and create something
+            <p className="text-lg md:text-xl text-foreground max-w-xl mx-auto mb-14 font-light text-lowercase-first">
+              i'd love to hear about your vision and create something
               meaningful, intentional, and timeless together.
             </p>
           </AnimatedSection>
