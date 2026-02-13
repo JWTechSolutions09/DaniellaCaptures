@@ -1,256 +1,314 @@
 import { useState } from "react";
-import { ExternalLink, Calendar, Users, Code, Filter } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import { brand } from "@/config/brand";
+import AnimatedSection from "@/components/AnimatedSection";
+import ImageGallery from "@/components/ImageGallery";
+import FloatingImage from "@/components/FloatingImage";
+import FloatingCamera from "@/components/FloatingCamera";
+import FloatingPhotoFrame from "@/components/FloatingPhotoFrame";
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["Todos", "Web", "Móvil", "E-commerce", "Empresarial"];
+  const categories = ["All", "Weddings", "Editorial", "Branding", "Lifestyle"];
 
-  const projects = [
-    {
-      id: 1,
-      title: "E-commerce TechStore",
-      description: "Plataforma de comercio electrónico completa con gestión de inventario, pagos y analytics en tiempo real.",
-      category: "E-commerce",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      client: "TechStore Corp",
-      year: "2024",
-      status: "Completado",
-      features: ["Carrito de compras", "Pagos seguros", "Panel administrativo", "Analytics"],
-      link: "#"
-    },
-    {
-      id: 2,
-      title: "App Delivery Express",
-      description: "Aplicación móvil para delivery de comida con tracking en tiempo real y sistema de calificaciones.",
-      category: "Móvil",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["React Native", "Firebase", "Google Maps", "Push Notifications"],
-      client: "Delivery Express",
-      year: "2024",
-      status: "En desarrollo",
-      features: ["Tracking GPS", "Notificaciones", "Calificaciones", "Chat"],
-      link: "#"
-    },
-    {
-      id: 3,
-      title: "Sistema ERP Industrial",
-      description: "Sistema empresarial para gestión de recursos, inventario, ventas y reportes analíticos.",
-      category: "Empresarial",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["Vue.js", "Laravel", "MySQL", "Docker"],
-      client: "Industrias ABC",
-      year: "2023",
-      status: "Completado",
-      features: ["Gestión inventario", "CRM", "Reportes", "Facturación"],
-      link: "#"
-    },
-    {
-      id: 4,
-      title: "Portal Educativo Online",
-      description: "Plataforma de educación virtual con cursos, evaluaciones y seguimiento de progreso estudiantil.",
-      category: "Web",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["Next.js", "Prisma", "AWS", "WebRTC"],
-      client: "EduTech Solutions",
-      year: "2023",
-      status: "Completado",
-      features: ["Videoconferencias", "Evaluaciones", "Certificados", "Dashboard"],
-      link: "#"
-    },
-    {
-      id: 5,
-      title: "App Fintech Banking",
-      description: "Aplicación bancaria móvil con transferencias, inversiones y análisis financiero personal.",
-      category: "Móvil",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["Flutter", "Blockchain", "AI/ML", "Biometric Auth"],
-      client: "NeoBank",
-      year: "2024",
-      status: "En desarrollo",
-      features: ["Transferencias", "Inversiones", "Analytics", "Seguridad"],
-      link: "#"
-    },
-    {
-      id: 6,
-      title: "Marketplace B2B",
-      description: "Plataforma B2B para conectar proveedores con empresas, con sistema de cotizaciones y contratos.",
-      category: "Web",
-      // image eliminada por referencia a 'lovable-uploads'
-      technologies: ["React", "GraphQL", "MongoDB", "Microservices"],
-      client: "B2B Connect",
-      year: "2023",
-      status: "Completado",
-      features: ["Cotizaciones", "Contratos", "Marketplace", "Ratings"],
-      link: "#"
-    }
+  // All gallery images - imágenes reales
+  const allImages = [
+    "/images/imagen2.jpeg",
+    "/images/imagen3.jpeg",
+    "/images/imagen4.jpeg",
+    "/images/imagen5.jpeg",
+    "/images/imagen6.jpeg",
+    "/images/imagen7.jpeg",
+    "/images/imagen8.jpeg",
+    "/images/imagen9.jpeg",
+    "/images/imagen10.jpeg",
+    "/images/imagen11.jpeg",
+    "/images/imagen12.jpeg",
+    "/images/imagen13.jpeg",
+    "/images/imagen14.jpeg",
+    "/images/imagen15.jpeg",
+    "/images/imagen16.jpeg",
+    "/images/imagen17.jpeg",
+    "/images/imagen18.jpeg",
+    "/images/imagen19.jpeg",
   ];
 
-  const filteredProjects = selectedCategory === "Todos"
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Completado":
-        return "bg-accent";
-      case "En desarrollo":
-        return "bg-primary";
-      default:
-        return "bg-muted";
-    }
+  const categoryImages: Record<string, string[]> = {
+    All: allImages,
+    Weddings: [
+      "/images/imagen2.jpeg",
+      "/images/imagen3.jpeg",
+      "/images/imagen4.jpeg",
+      "/images/imagen5.jpeg",
+      "/images/imagen6.jpeg",
+      "/images/imagen7.jpeg",
+      "/images/imagen9.jpeg",
+      "/images/imagen10.jpeg",
+      "/images/imagen11.jpeg",
+    ],
+    Editorial: [
+      "/images/imagen12.jpeg",
+      "/images/imagen13.jpeg",
+      "/images/imagen14.jpeg",
+      "/images/imagen15.jpeg",
+    ],
+    Branding: [
+      "/images/imagen16.jpeg",
+      "/images/imagen17.jpeg",
+    ],
+    Lifestyle: [
+      "/images/imagen8.jpeg",
+      "/images/imagen18.jpeg",
+      "/images/imagen19.jpeg",
+    ],
   };
 
+  const filteredImages = categoryImages[selectedCategory] || allImages;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative py-20 bg-hero-gradient text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Nuestros Proyectos
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Descubre los proyectos exitosos que hemos desarrollado para nuestros clientes
-          </p>
+
+      {/* HERO */}
+      <section className="relative py-40 overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0} position={{ x: 10, y: 18 }} size={48} rotation={-20} />
+        <FloatingCamera delay={0.8} position={{ x: 87, y: 22 }} size={42} rotation={28} />
+        <FloatingCamera delay={0.5} position={{ x: 16, y: 72 }} size={40} rotation={-12} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen2.jpeg"
+          delay={1}
+          position={{ x: 5, y: 28 }}
+          size={{ width: 165, height: 205 }}
+          rotation={-9}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen9.jpeg"
+          delay={0.9}
+          position={{ x: 89, y: 58 }}
+          size={{ width: 155, height: 195 }}
+          rotation={11}
+        />
+
+        {/* Floating background elements */}
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            backgroundImage: "url('/images/imagen3.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
+          <AnimatedSection delay={0.1}>
+            <p className="uppercase tracking-[0.2em] text-xs mb-8 text-muted-foreground font-light">
+              Portfolio
+            </p>
+          </AnimatedSection>
+
+          <motion.h1
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Recent Work
+          </motion.h1>
+
+          <AnimatedSection delay={0.3}>
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
+              A collection of moments captured with intention, emotion, and
+              timeless elegance.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-12 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FILTER */}
+      <section className="py-12 bg-muted/30 sticky top-20 z-40 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Filter className="h-5 w-5 text-muted-foreground" />
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category ? "bg-primary" : ""}
-              >
-                {category}
-              </Button>
+            {categories.map((category, idx) => (
+              <AnimatedSection key={category} delay={0.05 * idx}>
+                <motion.button
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-2 text-xs uppercase tracking-[0.2em] border transition-all font-light ${
+                    selectedCategory === category
+                      ? "bg-foreground text-background border-foreground"
+                      : "border-border text-muted-foreground hover:text-foreground hover:border-foreground"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {category}
+                </motion.button>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* GALLERY */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <Card key={project.id} className="bg-card-gradient border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
-                <div className="relative h-48 bg-muted">
-                  <div className="absolute inset-0 bg-tech-gradient opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Code className="h-16 w-16 text-primary" />
-                  </div>
-                  <Badge
-                    className={`absolute top-4 right-4 ${getStatusColor(project.status)} text-white`}
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              <ImageGallery images={filteredImages} columns={3} />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
 
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
+      {/* FEATURED PROJECTS */}
+      <section className="py-32 bg-muted/50 relative overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0.3} position={{ x: 12, y: 20 }} size={45} rotation={-18} />
+        <FloatingCamera delay={1} position={{ x: 85, y: 25 }} size={38} rotation={22} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen4.jpeg"
+          delay={1.5}
+          position={{ x: 4, y: 35 }}
+          size={{ width: 150, height: 190 }}
+          rotation={-7}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen8.jpeg"
+          delay={0.8}
+          position={{ x: 91, y: 62 }}
+          size={{ width: 140, height: 180 }}
+          rotation={10}
+        />
+
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection delay={0.1}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
+                Featured Projects
+              </h2>
+              <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+                Selected works that showcase the depth and range of our
+                photography
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {[
+              {
+                title: "Intimate Wedding",
+                category: "Weddings",
+                description:
+                  "A beautiful celebration of love captured with authentic emotion and timeless elegance.",
+                image: "/images/imagen6.jpeg",
+              },
+              {
+                title: "Editorial Portrait",
+                category: "Editorial",
+                description:
+                  "Creative editorial work that tells a story through composition and light.",
+                image: "/images/imagen13.jpeg",
+              },
+            ].map((project, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="group cursor-pointer"
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative overflow-hidden mb-6">
+                    <FloatingImage
+                      src={project.image}
+                      alt={project.title}
+                      className="h-[400px]"
+                      delay={0.1 * idx}
+                      floatIntensity={15}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"
+                      initial={false}
+                    />
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <div className="mb-2">
+                    <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-serif mb-3 font-normal">
+                    {project.title}
+                  </h3>
+                  <p className="text-foreground leading-relaxed font-light">
                     {project.description}
                   </p>
-                </CardHeader>
-
-                <CardContent className="pt-0">
-                  <div className="space-y-4">
-                    {/* Client & Year */}
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center text-muted-foreground">
-                        <Users className="h-4 w-4 mr-1" />
-                        {project.client}
-                      </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {project.year}
-                      </div>
-                    </div>
-
-                    {/* Technologies */}
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-2">Tecnologías:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Features */}
-                    <div>
-                      <p className="text-sm font-medium text-foreground mb-2">Características:</p>
-                      <ul className="text-xs text-muted-foreground space-y-1">
-                        {project.features.slice(0, 3).map((feature, index) => (
-                          <li key={index} className="flex items-center">
-                            <div className="w-1 h-1 bg-primary rounded-full mr-2"></div>
-                            {feature}
-                          </li>
-                        ))}
-                        {project.features.length > 3 && (
-                          <li className="text-primary">+{project.features.length - 3} más...</li>
-                        )}
-                      </ul>
-                    </div>
-
-                    <Button
-                      className="w-full bg-tech-gradient hover:opacity-90 transition-opacity group mt-4"
-                      onClick={() => window.open(project.link, '_blank')}
-                    >
-                      Ver Proyecto
-                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Proyectos Completados</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent mb-2">98%</div>
-              <div className="text-muted-foreground">Satisfacción Cliente</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-muted-foreground">Soporte Técnico</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent mb-2">4+</div>
-              <div className="text-muted-foreground">Años Experiencia</div>
-            </div>
-          </div>
+      {/* CTA */}
+      <section className="py-40 bg-background text-center relative overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-20 w-32 h-32 border border-border opacity-10"
+          animate={{
+            y: [0, -30, 0],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <AnimatedSection delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
+              Ready to Create Together?
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <p className="text-lg md:text-xl text-foreground mb-12 max-w-xl mx-auto font-light">
+              Let's discuss your vision and create something beautiful together.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.3}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <a
+                href="/inquire"
+                className="inline-flex items-center px-12 py-4 border uppercase tracking-[0.2em] text-xs transition-all hover:bg-foreground hover:text-background"
+                style={{
+                  borderColor: brand.theme.accent,
+                  color: brand.theme.accent,
+                }}
+              >
+                Inquire Now
+              </a>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

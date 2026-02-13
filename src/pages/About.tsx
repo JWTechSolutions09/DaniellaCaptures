@@ -1,151 +1,410 @@
-import { Users, Target, Lightbulb, Award } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import { brand } from "@/config/brand";
+import AnimatedSection from "@/components/AnimatedSection";
+import FloatingImage from "@/components/FloatingImage";
+import ParallaxSection from "@/components/ParallaxSection";
+import FloatingCamera from "@/components/FloatingCamera";
+import FloatingPhotoFrame from "@/components/FloatingPhotoFrame";
 
 const About = () => {
-  const values = [
+  const approachSteps = [
     {
-      icon: <Target className="h-8 w-8 text-primary" />,
-      title: "Misión",
-      description: "Impulsar la transformación digital de las empresas mediante soluciones tecnológicas innovadoras y personalizadas."
+      number: "01",
+      title: "Listen",
+      description:
+        "Every project begins with understanding your vision, your story, and what matters most to you.",
     },
     {
-      icon: <Lightbulb className="h-8 w-8 text-accent" />,
-      title: "Visión",
-      description: "Ser líderes en desarrollo tecnológico, creando el futuro digital de nuestros clientes con excelencia e innovación."
+      number: "02",
+      title: "Guide",
+      description:
+        "I don't believe in forcing moments. Instead, I guide gently — creating space for real emotion to unfold naturally.",
     },
     {
-      icon: <Award className="h-8 w-8 text-primary" />,
-      title: "Valores",
-      description: "Excelencia, innovación, compromiso y transparencia en cada proyecto que desarrollamos."
-    }
+      number: "03",
+      title: "Capture",
+      description:
+        "The result is imagery that feels elevated, timeless, and deeply personal — moments frozen in time.",
+    },
   ];
 
-  const team = [
+  const services = [
     {
-      name: "Jamil Williams",
-      role: "CEO & Fundador",
-      description: "10+ años en desarrollo de software y liderazgo tecnológico"
+      title: "Love Stories",
+      description:
+        "Wedding and engagement photography that captures the essence of your unique love story.",
+      image: "/images/imagen6.jpeg",
     },
     {
-      name: "LA ROSALIA",
-      role: "CTO",
-      description: "Experta en arquitectura de software y tecnologías emergentes"
+      title: "Editorial Work",
+      description:
+        "Creative editorial photography for publications, brands, and artistic projects.",
+      image: "/images/imagen13.jpeg",
     },
     {
-      name: "JOSHUA WILLIAMS",
-      role: "Lead Developer",
-      description: "Especialista en desarrollo full-stack y metodologías ágiles"
-    }
+      title: "Personal Brands",
+      description:
+        "Authentic brand photography that tells your story and connects with your ideal audience.",
+      image: "/images/imagen17.jpeg",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative py-20 bg-hero-gradient text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Conoce a JW Tech Solutions
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Somos un equipo apasionado por la tecnología, dedicado a crear soluciones digitales que transforman negocios
-          </p>
+
+      {/* HERO with animated text */}
+      <section className="relative py-40 overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0} position={{ x: 12, y: 20 }} size={45} rotation={-18} />
+        <FloatingCamera delay={0.6} position={{ x: 88, y: 25 }} size={38} rotation={22} />
+        <FloatingCamera delay={1.2} position={{ x: 18, y: 70 }} size={42} rotation={-12} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen3.jpeg"
+          delay={0.3}
+          position={{ x: 6, y: 30 }}
+          size={{ width: 160, height: 200 }}
+          rotation={-10}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen11.jpeg"
+          delay={0.8}
+          position={{ x: 85, y: 60 }}
+          size={{ width: 150, height: 190 }}
+          rotation={12}
+        />
+
+        {/* Animated background elements */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full opacity-5"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            backgroundImage: "url('/images/Daniella.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <AnimatedSection delay={0.1}>
+            <p className="uppercase tracking-[0.2em] text-xs mb-8 text-muted-foreground font-light">
+              Behind the Lens
+            </p>
+          </AnimatedSection>
+
+          <motion.h1
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            I See Stories <br /> In The In-Between
+          </motion.h1>
+
+          <AnimatedSection delay={0.3}>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-light tracking-wide">
+              Photographer · Storyteller · Creative Observer
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Historia Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Nuestra Historia
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Fundada en 2020, JW Tech Solutions nació de la visión de democratizar el acceso a tecnología de vanguardia. 
-                Comenzamos como un pequeño equipo de desarrolladores apasionados y hemos crecido hasta convertirnos en una 
-                empresa reconocida por nuestra innovación y calidad.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Hoy, servimos a clientes desde startups hasta grandes corporaciones, siempre manteniendo nuestro 
-                compromiso con la excelencia técnica y el servicio personalizado.
-              </p>
-            </div>
-            <div className="bg-card-gradient p-8 rounded-2xl shadow-medium">
-              <div className="flex items-center justify-center h-64 bg-primary/10 rounded-xl">
-                <Users className="h-32 w-32 text-primary" />
+      {/* STORY with parallax image */}
+      <section className="py-32 relative">
+        <ParallaxSection speed={0.4}>
+          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
+            {/* Text */}
+            <AnimatedSection direction="right" delay={0.1}>
+              <div>
+                <p className="uppercase tracking-[0.2em] text-xs mb-6 text-muted-foreground font-light">
+                  Hello, I'm
+                </p>
+
+                <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
+                  Daniella
+                </h2>
+
+                <motion.p
+                  className="text-base md:text-lg text-foreground leading-relaxed mb-6 font-light"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Allow me to formally introduce myself. My name is Daniella
+                  Calderon, founder of Daniella Captures Photography. I view
+                  photography as telling a story. YOUR story. It's not just
+                  about posing and smiling at a camera but
+                </motion.p>
+
+                <motion.p
+                  className="text-base md:text-lg text-foreground leading-relaxed font-light"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  capturing real life candid moments and creating art out of
+                  it. Every moment snapped and stored into an album is a story
+                  you can look back on and hold onto forever. Here to capture
+                  your most precious moments.
+                </motion.p>
               </div>
+            </AnimatedSection>
+
+            {/* Image with floating effect */}
+            <AnimatedSection direction="left" delay={0.2}>
+              <FloatingImage
+                src="/images/Daniella.jpeg"
+                alt="Daniella Captures portrait"
+                className="h-[600px]"
+                delay={0.1}
+                floatIntensity={25}
+              />
+            </AnimatedSection>
+          </div>
+        </ParallaxSection>
+      </section>
+
+      {/* APPROACH with animated steps */}
+      <section className="py-32 bg-muted/50 relative overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0.3} position={{ x: 10, y: 15 }} size={40} rotation={-15} />
+        <FloatingCamera delay={1.2} position={{ x: 90, y: 20 }} size={35} rotation={25} />
+        <FloatingCamera delay={0.6} position={{ x: 15, y: 80 }} size={38} rotation={10} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen5.jpeg"
+          delay={0.5}
+          position={{ x: 3, y: 25 }}
+          size={{ width: 140, height: 180 }}
+          rotation={-8}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen10.jpeg"
+          delay={0.3}
+          position={{ x: 92, y: 65 }}
+          size={{ width: 130, height: 170 }}
+          rotation={9}
+        />
+
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection delay={0.1}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
+                My Approach
+              </h2>
+              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-2xl mx-auto font-light">
+                Every project begins with listening.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
+          </AnimatedSection>
 
-      {/* Valores Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Nuestros Valores
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Los principios que guían cada decisión y proyecto en JW Tech Solutions
-            </p>
-          </div>
-          
           <div className="grid md:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="bg-card-gradient border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-8 text-center">
-                  <div className="flex justify-center mb-4">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {value.title}
+            {approachSteps.map((step, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="p-8 bg-background border border-border h-full"
+                  whileHover={{
+                    y: -10,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-6xl font-serif text-muted-foreground/30 mb-4"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 * idx }}
+                  >
+                    {step.number}
+                  </motion.div>
+                  <h3 className="text-2xl font-serif mb-4 font-normal">
+                    {step.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {value.description}
+                  <p className="text-foreground leading-relaxed font-light">
+                    {step.description}
                   </p>
-                </CardContent>
-              </Card>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Nuestro Equipo
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Profesionales experimentados comprometidos con tu éxito
-            </p>
-          </div>
-          
+      {/* WHAT I SHOOT with floating service cards */}
+      <section className="py-32 relative overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0.2} position={{ x: 8, y: 18 }} size={45} rotation={-20} />
+        <FloatingCamera delay={0.8} position={{ x: 88, y: 22 }} size={40} rotation={18} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen7.jpeg"
+          delay={0.4}
+          position={{ x: 4, y: 30 }}
+          size={{ width: 155, height: 195 }}
+          rotation={-12}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen12.jpeg"
+          delay={0.9}
+          position={{ x: 90, y: 68 }}
+          size={{ width: 145, height: 185 }}
+          rotation={11}
+        />
+
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection delay={0.1}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
+                More Than One Story To Tell
+              </h2>
+              <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-3xl mx-auto font-light">
+                Love stories, editorial projects, and personal brands all
+                deserve the same level of care and intention.
+              </p>
+            </div>
+          </AnimatedSection>
+
           <div className="grid md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="bg-card-gradient border-0 shadow-medium hover:shadow-strong transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-12 w-12 text-primary" />
+            {services.map((service, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="group cursor-pointer"
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative overflow-hidden mb-6">
+                    <FloatingImage
+                      src={service.image}
+                      alt={service.title}
+                      className="h-[300px]"
+                      delay={0.1 * idx}
+                      floatIntensity={15}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"
+                      initial={false}
+                    />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {member.name}
+                  <h3 className="text-2xl font-serif mb-3 font-normal">
+                    {service.title}
                   </h3>
-                  <p className="text-primary font-medium mb-3">
-                    {member.role}
+                  <p className="text-foreground leading-relaxed font-light text-sm">
+                    {service.description}
                   </p>
-                  <p className="text-muted-foreground">
-                    {member.description}
-                  </p>
-                </CardContent>
-              </Card>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* STATS SECTION with animated numbers */}
+      <section className="py-32 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { number: "7+", label: "Years Experience" },
+              { number: "150+", label: "Stories Captured" },
+              { number: "5★", label: "Client Reviews" },
+              { number: "FL", label: "Based in Florida" },
+            ].map((stat, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-5xl md:text-6xl font-serif mb-4 font-normal"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 * idx }}
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-light">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA with animated elements */}
+      <section className="py-40 bg-muted/50 text-center relative overflow-hidden">
+        {/* Floating decorative elements */}
+        <motion.div
+          className="absolute top-20 left-20 w-20 h-20 border border-border opacity-10"
+          animate={{
+            y: [0, -30, 0],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-16 h-16 border border-border opacity-10"
+          animate={{
+            y: [0, 30, 0],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <AnimatedSection delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
+              Let's Create Something Meaningful
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <p className="text-lg md:text-xl text-foreground mb-12 max-w-xl mx-auto font-light">
+              If you're drawn to intentional imagery and a calm, collaborative
+              experience, I'd love to hear your story.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.3}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                to="/inquire"
+                className="inline-flex items-center px-12 py-4 border uppercase tracking-[0.2em] text-xs transition-all hover:bg-foreground hover:text-background"
+                style={{
+                  borderColor: brand.theme.accent,
+                  color: brand.theme.accent,
+                }}
+              >
+                Inquire Now
+              </Link>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

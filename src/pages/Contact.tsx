@@ -1,302 +1,331 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Send, CheckCircle, Mail, MapPin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
+import { brand } from "@/config/brand";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    company: "",
-    service: "",
-    message: ""
+    location: "",
+    projectType: "",
+    date: "",
+    message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const contactInfo = [
-    {
-      icon: <Mail className="h-6 w-6 text-primary" />,
-      title: "Email",
-      value: "jwtechsolutions@gmail.com",
-      subtitle: "Respuesta en 24 horas"
-    },
-    {
-      icon: <Phone className="h-6 w-6 text-accent" />,
-      title: "Teléfono",
-      value: "+1 (809) 761-2875",
-      subtitle: "Lun - Vie 9:00 - 18:00"
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-primary" />,
-      title: "Oficina",
-      value: "HERRERA LO MA CALENTON",
-      subtitle: "Citas disponibles"
-    },
-    {
-      icon: <Clock className="h-6 w-6 text-accent" />,
-      title: "Horarios",
-      value: "Lun - Vie: 9:00 - 18:00",
-      subtitle: "Sáb: 10:00 - 14:00"
-    }
+  const projectTypes = [
+    "Wedding / Elopement",
+    "Editorial",
+    "Personal Brand",
+    "Lifestyle / Portrait",
+    "Other",
   ];
 
-  const services = [
-    "Desarrollo Web",
-    "Aplicaciones Móviles", 
-    "Software Personalizado",
-    "Consultoría Técnica",
-    "E-commerce",
-    "Otro"
-  ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((r) => setTimeout(r, 1200));
 
     toast({
-      title: "¡Mensaje enviado exitosamente!",
-      description: "Nos pondremos en contacto contigo pronto.",
+      title: "Inquiry sent",
+      description: "I'll be in touch soon. Thank you for reaching out.",
     });
 
     setFormData({
       name: "",
       email: "",
-      phone: "",
-      company: "",
-      service: "",
-      message: ""
+      location: "",
+      projectType: "",
+      date: "",
+      message: "",
     });
 
     setIsSubmitting(false);
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative py-20 bg-hero-gradient text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Contáctanos
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            ¿Tienes un proyecto en mente? Hablemos y convirtamos tu idea en realidad
-          </p>
+
+      {/* HERO */}
+      <section className="relative py-40 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            backgroundImage: "url('/images/Daniella.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <AnimatedSection delay={0.1}>
+            <p className="uppercase tracking-[0.2em] text-xs mb-8 text-muted-foreground font-light">
+              Inquire
+            </p>
+          </AnimatedSection>
+
+          <motion.h1
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Let's Tell Your Story
+          </motion.h1>
+
+          <AnimatedSection delay={0.3}>
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
+              I'd love to learn more about you and what you're dreaming up.
+              Please fill out the form below and I'll be in touch shortly.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-card-gradient border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-2 text-center">
-                <CardContent className="p-6">
-                  <div className="flex justify-center mb-4">
-                    {info.icon}
-                  </div>
-                  <h3 className="font-bold text-foreground mb-2">
-                    {info.title}
-                  </h3>
-                  <p className="text-foreground font-medium mb-1">
-                    {info.value}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {info.subtitle}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Contact Form & Map Section */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="bg-card-gradient border-0 shadow-strong">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-foreground">
-                  Envíanos un mensaje
-                </CardTitle>
-                <p className="text-muted-foreground">
-                  Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas
+      {/* FORM & CONTACT INFO */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* FORM */}
+            <motion.div
+              className="md:col-span-2"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-background border border-border p-8">
+                <h2 className="text-3xl font-serif mb-6 font-normal">
+                  Inquiry Form
+                </h2>
+                <p className="text-muted-foreground mb-8 font-light">
+                  Please share as much detail as you'd like.
                 </p>
-              </CardHeader>
-              <CardContent>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Nombre completo *</Label>
+                      <Label htmlFor="name" className="text-xs uppercase tracking-[0.2em] font-light">
+                        Name *
+                      </Label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
-                        onChange={handleInputChange}
+                        onChange={handleChange}
                         required
-                        placeholder="Tu nombre"
+                        placeholder="Your name"
+                        className="border-border"
                       />
                     </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email" className="text-xs uppercase tracking-[0.2em] font-light">
+                        Email *
+                      </Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
                         value={formData.email}
-                        onChange={handleInputChange}
+                        onChange={handleChange}
                         required
-                        placeholder="tu@email.com"
+                        placeholder="you@email.com"
+                        className="border-border"
                       />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Teléfono</Label>
+                      <Label htmlFor="location" className="text-xs uppercase tracking-[0.2em] font-light">
+                        Location
+                      </Label>
                       <Input
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="+1 (809) 761-2875"
+                        id="location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        placeholder="City / State"
+                        className="border-border"
                       />
                     </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="company">Empresa</Label>
+                      <Label htmlFor="date" className="text-xs uppercase tracking-[0.2em] font-light">
+                        Event / Project Date
+                      </Label>
                       <Input
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        placeholder="Nombre de tu empresa"
+                        id="date"
+                        name="date"
+                        type="date"
+                        value={formData.date}
+                        onChange={handleChange}
+                        className="border-border"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="service">Servicio de interés</Label>
+                    <Label htmlFor="projectType" className="text-xs uppercase tracking-[0.2em] font-light">
+                      Project Type
+                    </Label>
                     <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      id="projectType"
+                      name="projectType"
+                      value={formData.projectType}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 font-light"
                     >
-                      <option value="">Selecciona un servicio</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service}>
-                          {service}
+                      <option value="">Select one</option>
+                      {projectTypes.map((p) => (
+                        <option key={p} value={p}>
+                          {p}
                         </option>
                       ))}
                     </select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Mensaje *</Label>
+                    <Label htmlFor="message" className="text-xs uppercase tracking-[0.2em] font-light">
+                      Tell me about your vision *
+                    </Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       required
-                      rows={5}
-                      placeholder="Cuéntanos sobre tu proyecto..."
+                      rows={6}
+                      placeholder="What are you envisioning? What matters most to you?"
+                      className="border-border font-light"
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-tech-gradient hover:opacity-90 transition-opacity"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Enviando..."
-                    ) : (
-                      <>
-                        Enviar mensaje
-                        <Send className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button
+                      type="submit"
+                      className="w-full border uppercase tracking-[0.2em] text-xs font-light"
+                      style={{
+                        borderColor: brand.theme.accent,
+                        color: brand.theme.accent,
+                        backgroundColor: "transparent",
+                      }}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Send Inquiry
+                          <Send className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
 
-            {/* Map & Additional Info */}
-            <div className="space-y-8">
-              {/* Map Placeholder */}
-              <Card className="bg-card-gradient border-0 shadow-medium">
-                <CardContent className="p-0">
-                  <div className="h-64 bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
-                      <p className="text-muted-foreground">Mapa de ubicación</p>
-                      <p className="text-sm text-muted-foreground">123 Tech Street, Ciudad</p>
+                  <div className="flex items-center justify-center text-sm text-muted-foreground gap-2 pt-4 font-light">
+                    <CheckCircle className="h-4 w-4" />
+                    I typically respond within 24–48 hours.
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+
+            {/* CONTACT INFO */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div>
+                <h3 className="text-xl font-serif mb-6 font-normal">Get in Touch</h3>
+                <div className="space-y-6">
+                  <motion.a
+                    href={`mailto:${brand.email}`}
+                    className="flex items-center gap-4 text-foreground hover:text-muted-foreground transition-colors group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light mb-1">
+                        Email
+                      </p>
+                      <p className="font-light">{brand.email}</p>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href={`https://www.instagram.com/${brand.instagram.replace("@", "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-foreground hover:text-muted-foreground transition-colors group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+                      <Instagram className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light mb-1">
+                        Instagram
+                      </p>
+                      <p className="font-light">{brand.instagram}</p>
+                    </div>
+                  </motion.a>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 border border-border flex items-center justify-center">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-light mb-1">
+                        Location
+                      </p>
+                      <p className="font-light">{brand.location}</p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-              {/* Why Choose Us */}
-              <Card className="bg-card-gradient border-0 shadow-medium">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    ¿Por qué elegirnos?
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {[
-                      "Respuesta rápida en menos de 24 horas",
-                      "Presupuestos sin compromiso",
-                      "Equipo especializado y certificado",
-                      "Soporte técnico 24/7",
-                      "Garantía en todos nuestros proyectos"
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-center text-sm">
-                        <CheckCircle className="h-4 w-4 text-accent mr-3 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+              <div className="pt-8 border-t border-border">
+                <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                  Based in {brand.location}, available for travel. Let's create
+                  something beautiful together.
+                </p>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            ¿Prefieres una llamada directa?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Agenda una consulta gratuita de 30 minutos para discutir tu proyecto
-          </p>
-          <Button size="lg" className="bg-tech-gradient hover:opacity-90 transition-opacity">
-            <Phone className="mr-2 h-5 w-5" />
-            Agendar Llamada
-          </Button>
         </div>
       </section>
     </div>

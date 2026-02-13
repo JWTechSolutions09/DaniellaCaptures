@@ -1,194 +1,327 @@
-import { 
-  Code, 
-  Smartphone, 
-  Globe, 
-  Database, 
-  Shield, 
-  Palette,
-  ArrowRight,
-  CheckCircle
-} from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import { brand } from "@/config/brand";
+import AnimatedSection from "@/components/AnimatedSection";
+import FloatingImage from "@/components/FloatingImage";
+import FloatingCamera from "@/components/FloatingCamera";
+import FloatingPhotoFrame from "@/components/FloatingPhotoFrame";
 
 const Services = () => {
   const services = [
     {
-      icon: <Globe className="h-12 w-12 text-primary" />,
-      title: "Desarrollo Web",
-      description: "Sitios web modernos, rápidos y responsivos usando las últimas tecnologías",
-      features: ["React/Next.js", "E-commerce", "CMS", "SEO Optimizado"],
-      price: "Desde $1,500"
+      title: "Weddings",
+      description:
+        "Emotion-led wedding photography focused on genuine moments, connection, and timeless storytelling.",
+      features: [
+        "Full day coverage",
+        "Intentional storytelling",
+        "Timeless editing",
+        "Personal experience",
+      ],
+      image: "/images/imagen2.jpeg",
     },
     {
-      icon: <Smartphone className="h-12 w-12 text-accent" />,
-      title: "Apps Móviles",
-      description: "Aplicaciones nativas e híbridas para iOS y Android",
-      features: ["React Native", "Flutter", "Publicación en stores", "Push notifications"],
-      price: "Desde $3,000"
+      title: "Editorial Photography",
+      description:
+        "Editorial imagery for creatives, publications, and brands looking for elevated visual storytelling.",
+      features: [
+        "Creative direction",
+        "Concept development",
+        "High-end visuals",
+        "Brand alignment",
+      ],
+      image: "/images/imagen12.jpeg",
     },
     {
-      icon: <Code className="h-12 w-12 text-primary" />,
-      title: "Software Personalizado",
-      description: "Sistemas a medida para automatizar y optimizar procesos empresariales",
-      features: ["ERP/CRM", "APIs REST", "Integraciones", "Escalabilidad"],
-      price: "Desde $5,000"
+      title: "Personal Branding",
+      description:
+        "Visual storytelling for entrepreneurs and creatives who want imagery that reflects who they truly are.",
+      features: [
+        "Brand-focused sessions",
+        "Authentic portraits",
+        "Content-ready imagery",
+        "Creative guidance",
+      ],
+      image: "/images/imagen8.jpeg",
     },
     {
-      icon: <Database className="h-12 w-12 text-accent" />,
-      title: "Base de Datos",
-      description: "Diseño, optimización y migración de bases de datos robustas",
-      features: ["MySQL/PostgreSQL", "MongoDB", "Cloud databases", "Backup automático"],
-      price: "Desde $800"
+      title: "Lifestyle Sessions",
+      description:
+        "Relaxed lifestyle sessions capturing real moments, emotion, and connection.",
+      features: [
+        "Natural direction",
+        "Comfortable experience",
+        "Authentic moments",
+        "Timeless edits",
+      ],
+      image: "/images/imagen19.jpeg",
     },
-    {
-      icon: <Shield className="h-12 w-12 text-primary" />,
-      title: "Ciberseguridad",
-      description: "Protección integral para tu infraestructura digital",
-      features: ["Auditorías", "SSL/TLS", "Firewalls", "Pentesting"],
-      price: "Desde $1,200"
-    },
-    {
-      icon: <Palette className="h-12 w-12 text-accent" />,
-      title: "UI/UX Design",
-      description: "Diseños intuitivos y atractivos centrados en el usuario",
-      features: ["Wireframes", "Prototipos", "Design systems", "User testing"],
-      price: "Desde $900"
-    }
   ];
 
-  const process = [
+  const processSteps = brand.processSteps || [
     {
       step: "01",
-      title: "Análisis",
-      description: "Entendemos tus necesidades y objetivos de negocio"
+      title: "Inquire",
+      description: "Reach out and tell me about your vision and story.",
     },
     {
-      step: "02", 
-      title: "Propuesta",
-      description: "Diseñamos una solución personalizada con presupuesto detallado"
+      step: "02",
+      title: "Connect",
+      description:
+        "We'll align on your goals, style, and creative direction.",
     },
     {
       step: "03",
-      title: "Desarrollo",
-      description: "Implementamos la solución con metodologías ágiles"
+      title: "Create",
+      description: "Your session is photographed with intention and care.",
     },
     {
       step: "04",
-      title: "Entrega",
-      description: "Desplegamos y capacitamos para el uso óptimo"
-    }
+      title: "Deliver",
+      description: "You receive a timeless gallery crafted to last.",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative py-20 bg-hero-gradient text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Nuestros Servicios
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Soluciones tecnológicas completas para impulsar tu negocio al siguiente nivel
-          </p>
+
+      {/* HERO */}
+      <section className="relative py-40 overflow-hidden">
+        {/* Floating cameras */}
+        <FloatingCamera delay={0} position={{ x: 12, y: 20 }} size={50} rotation={-22} />
+        <FloatingCamera delay={0.7} position={{ x: 86, y: 24 }} size={44} rotation={26} />
+        <FloatingCamera delay={0.4} position={{ x: 18, y: 68 }} size={41} rotation={-14} />
+
+        {/* Floating photo frames */}
+        <FloatingPhotoFrame
+          image="/images/imagen6.jpeg"
+          delay={0.4}
+          position={{ x: 6, y: 32 }}
+          size={{ width: 170, height: 210 }}
+          rotation={-11}
+        />
+        <FloatingPhotoFrame
+          image="/images/imagen11.jpeg"
+          delay={0.8}
+          position={{ x: 88, y: 60 }}
+          size={{ width: 160, height: 200 }}
+          rotation={13}
+        />
+
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            backgroundImage: "url('/images/imagen9.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
+          <AnimatedSection delay={0.1}>
+            <p className="uppercase tracking-[0.2em] text-xs mb-8 text-muted-foreground font-light">
+              Services
+            </p>
+          </AnimatedSection>
+
+          <motion.h1
+            className="text-5xl md:text-7xl font-serif mb-10 leading-[1.1] font-normal"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            What I Offer
+          </motion.h1>
+
+          <AnimatedSection delay={0.3}>
+            <p className="text-base md:text-lg text-foreground max-w-2xl mx-auto font-light tracking-wide">
+              Emotion-driven photography services tailored to your unique story
+              and vision.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="bg-card-gradient border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-2 group">
-                <CardHeader className="text-center pb-4">
-                  <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
+      {/* SERVICES GRID */}
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12">
+            {services.map((service, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="group"
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative overflow-hidden mb-6 h-[400px] bg-muted/30">
+                    <motion.img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 * idx }}
+                      whileHover={{ scale: 1.05 }}
+                      loading="lazy"
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"
+                      initial={false}
+                    />
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground mb-2">
-                    {service.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground">
-                    {service.description}
-                  </p>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                        <CheckCircle className="h-4 w-4 text-accent mr-2 flex-shrink-0" />
+
+                  <div className="mb-4">
+                    <h3 className="text-3xl font-serif mb-4 font-normal">
+                      {service.title}
+                    </h3>
+                    <p className="text-foreground leading-relaxed font-light mb-6">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {(service.features || []).map((feature, fIdx) => (
+                      <motion.li
+                        key={fIdx}
+                        className="flex items-center text-sm text-foreground font-light"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.1 * fIdx }}
+                      >
+                        <div className="w-1.5 h-1.5 bg-foreground rounded-full mr-3" />
                         {feature}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
-                  <div className="border-t pt-4">
-                    <p className="text-lg font-bold text-primary mb-3">{service.price}</p>
-                    <Button className="w-full bg-tech-gradient hover:opacity-90 transition-opacity group">
-                      Solicitar Cotización
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      to="/inquire"
+                      className="inline-flex items-center gap-2 px-8 py-3 border uppercase tracking-[0.2em] text-xs transition-all hover:bg-foreground hover:text-background font-light"
+                      style={{
+                        borderColor: brand.theme.accent,
+                        color: brand.theme.accent,
+                      }}
+                    >
+                      Inquire About This Service
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Nuestro Proceso
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Metodología probada para entregar resultados excepcionales
-            </p>
-          </div>
-          
+      {/* PROCESS */}
+      <section className="py-32 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection delay={0.1}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 font-normal leading-tight">
+                The Process
+              </h2>
+              <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+                Simple steps to create something meaningful together
+              </p>
+            </div>
+          </AnimatedSection>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((item, index) => (
-              <div key={index} className="text-center group">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl font-bold text-white">{item.step}</span>
-                  </div>
-                  {index < process.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-border -translate-x-8">
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full"></div>
-                    </div>
-                  )}
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
+            {processSteps.map((step, idx) => (
+              <AnimatedSection key={idx} delay={0.1 * idx}>
+                <motion.div
+                  className="text-center p-8 bg-background border border-border h-full"
+                  whileHover={{
+                    y: -10,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-6xl font-serif text-muted-foreground/30 mb-4"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 * idx }}
+                  >
+                    {step.step}
+                  </motion.div>
+                  <h3 className="text-xl font-serif mb-4 font-normal">
+                    {step.title}
+                  </h3>
+                  <p className="text-foreground leading-relaxed font-light text-sm">
+                    {step.description}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-card-gradient p-12 rounded-2xl shadow-strong">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              ¿Listo para transformar tu negocio?
+      {/* CTA */}
+      <section className="py-40 bg-background text-center relative overflow-hidden">
+        <motion.div
+          className="absolute bottom-20 right-20 w-24 h-24 border border-border opacity-10"
+          animate={{
+            y: [0, 30, 0],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <AnimatedSection delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 font-normal leading-tight">
+              Ready to Get Started?
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Contáctanos hoy y descubre cómo nuestras soluciones tecnológicas pueden llevar tu empresa al siguiente nivel
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <p className="text-lg md:text-xl text-foreground mb-12 max-w-xl mx-auto font-light">
+              Let's discuss your vision and create something beautiful together.
             </p>
-            <Button size="lg" className="bg-tech-gradient hover:opacity-90 transition-opacity text-lg px-8 py-3">
-              Iniciar Proyecto
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.3}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                to="/inquire"
+                className="inline-flex items-center gap-3 px-12 py-4 border uppercase tracking-[0.2em] text-xs transition-all hover:bg-foreground hover:text-background"
+                style={{
+                  borderColor: brand.theme.accent,
+                  color: brand.theme.accent,
+                }}
+              >
+                Inquire Now
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </motion.div>
+              </Link>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

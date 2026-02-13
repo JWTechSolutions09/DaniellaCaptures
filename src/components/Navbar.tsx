@@ -1,100 +1,188 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Code, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { brand } from "@/config/brand";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: "Inicio", path: "/" },
-    { name: "Nosotros", path: "/nosotros" },
-    { name: "Servicios", path: "/servicios" },
-    { name: "Proyectos", path: "/proyectos" },
-    { name: "Contacto", path: "/contacto" },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Services", path: "/services" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-background/95 backdrop-blur-sm border-b sticky top-0 z-50 shadow-soft">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <motion.nav
+      className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="relative">
-              <Code className="h-8 w-8 text-primary" />
-              <Zap className="h-4 w-4 text-accent absolute -bottom-1 -right-1" />
-            </div>
-            <span className="text-xl font-bold bg-tech-gradient bg-clip-text text-transparent">
-              JW Tech Solutions
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isActive(item.path)
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground hover:text-primary hover:bg-primary/5"
-                  }`}
-              >
-                {item.name}
-                {isActive(item.path) && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                )}
-              </Link>
-            ))}
-            <Button className="bg-tech-gradient hover:opacity-90 transition-opacity shadow-medium">
-              Cotizar Proyecto
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link
+              to="/"
+              className="font-serif text-lg tracking-wide text-foreground font-normal"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-        </div>
+              {brand.name}
+            </Link>
+          </motion.div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t bg-card">
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item, idx) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 * idx }}
+              >
                 <Link
-                  key={item.name}
                   to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(item.path)
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground hover:text-primary hover:bg-primary/5"
-                    }`}
+                  className={`text-xs uppercase tracking-[0.2em] transition-colors font-light relative ${
+                    isActive(item.path)
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.name}
+                  {isActive(item.path) && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-[1px] bg-foreground"
+                      layoutId="navbar-indicator"
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
                 </Link>
-              ))}
-              <Button
-                className="mt-4 bg-tech-gradient hover:opacity-90 transition-opacity"
-                onClick={() => setIsOpen(false)}
+              </motion.div>
+            ))}
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/inquire"
+                className="ml-6 inline-flex items-center gap-2 px-6 py-2 text-xs uppercase tracking-[0.2em] border transition-all hover:bg-foreground hover:text-background font-light"
+                style={{
+                  borderColor: brand.theme.accent,
+                  color: brand.theme.accent,
+                }}
               >
-                Cotizar Proyecto
-              </Button>
-            </div>
+                Inquire
+                <motion.div
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </motion.div>
+              </Link>
+            </motion.div>
           </div>
-        )}
+
+          {/* Mobile toggle */}
+          <motion.button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-foreground"
+            whileTap={{ scale: 0.9 }}
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-6 w-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-6 w-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="md:hidden py-10"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex flex-col items-center gap-8">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 * idx }}
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-sm uppercase tracking-[0.2em] font-light ${
+                        isActive(item.path)
+                          ? "text-foreground"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
+                >
+                  <Link
+                    to="/inquire"
+                    onClick={() => setIsOpen(false)}
+                    className="mt-4 inline-flex items-center gap-2 px-8 py-3 text-xs uppercase tracking-[0.2em] border transition-all hover:bg-foreground hover:text-background font-light"
+                    style={{
+                      borderColor: brand.theme.accent,
+                      color: brand.theme.accent,
+                    }}
+                  >
+                    Inquire
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
